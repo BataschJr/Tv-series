@@ -7,10 +7,9 @@ function App() {
   const [state, setState] = useState([]);
 
   useEffect(() => {
-    fetch('https://api.tvmaze.com/shows/1/episodes?specials=1')
-      .then((response) => response.json())
-      .then((json) => setState({ state: json }));
-    console.log(state);
+    fetch('https://api.tvmaze.com/shows/1/episodes?specials=1').then((response) => response.json());
+    //   .then((json) => setState({ state: json }));
+    // console.log(state);
   });
 
   return (
