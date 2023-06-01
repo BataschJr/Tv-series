@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useEffect, useState } from 'react';
+import Intro from './components/intro';
+import '@whatwg-node/fetch';
 
 function App() {
+  const [state, setState] = useState([]);
+
+  useEffect(() => {
+    fetch('https://api.tvmaze.com/shows/1/episodes?specials=1')
+      .then((response) => response.json())
+      .then((json) => setState({ state: json }));
+    console.log(state);
+  });
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>TV Series List</h1>
       </header>
+      <Intro />
+      <p> The length of the array is {state.length}</p>
     </div>
   );
 }
